@@ -1,0 +1,20 @@
+Like Keypad, we don't implement Simon Says, because adding a bot to the
+process only makes it more difficult.
+
+Assuming you have no strikes, the bomb-defuser can memorise how to play Simon
+Says and finish the module without even telling the manual-reader.
+
+The rule goes like this:
+
+Does the serial number contain a vowel?
+If yes, swap red/blue and green/yellow in your replies.
+
+If no, do this:
+1. Pretend green is a totally separate button. Reply to green with green.
+2. Rotate your other responses clockwise once, ignoring green.
+
+That might be hard to understand from a short explanation, but compare those
+rules to the no-strikes entries in the manual and it should be pretty clear.
+
+This is simple enough that you don't even need a manual-reader to help you
+solve it, so I don't see a bot being too helpful here.

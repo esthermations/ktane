@@ -1,0 +1,19 @@
+For this one we need to define names for the symbols. Unfortunately it's not
+as easy as using the first character, like in other solvers.
+
+I suppose every group of players ends up with their own names for these
+things. Mine are in here.
+
+In the manual, read each column top-to-bottom.
+
+Column 1: head, pyramid, lambda, heartbeat, spaceship, h, backwards-c
+Column 2: euro, head, backwards-c, ribbon, empty-star, h, question-mark
+Column 3: copyright, w, ribbon, x, broken-3, lambda, empty-star
+Column 4: flat-6, paragraph, b, spaceship, x, question-mark, smiley
+Column 5: trident, smiley, b, c, paragraph, evil-3, full-star
+Column 6: flat-6 , euro, not-equal, ae, trident, n, omega
+
+To be honest, I'm not convinced writing a program to do this would save any
+time. Probably only a second or two, at most.
+
+Because of that, I'll move on and write other things first.
