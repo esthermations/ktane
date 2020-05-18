@@ -19,4 +19,4 @@
   7. Password
 
   This may or may not ever solve Simon Says or Keypad. The reasoning behind
-  that can be found in the [[./solvers/simon_says.txt]] and [[./solvers/keypad.txt]] files.
+  that can be found in the [simon_says.txt](./solvers/simon_says.txt) and [keypad.txt](./solvers/keypad.txt) files.
