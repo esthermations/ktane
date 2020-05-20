@@ -13,8 +13,9 @@
   read the display AND all six button labels, allowing the program to solve for
   which button to press instantly, with no back-and-forth.
 
-  This makes it harder on the bomb-defuser, but you've gotta save those frames.
-  (The time saved is probably in the order of 10 seconds.)
+  This makes it harder on the bomb-defuser, since they have to read literally
+  everything they can see letter-by-letter, but doing it this way saves about
+  ten seconds, which is pretty good. 
 */
 
 /*
@@ -59,12 +60,12 @@ whos_on_first(void)
 		getl(display, 10);
 
 		char buttons[6][10] = {{0}};
-		size_t button_number = 0;
+		int button_number = 0;
 
 		/* Grab button text */
 
 		while (button_number < NUM_BUTTONS) {
-			printf("What's on button %lu? ", button_number + 1);
+			printf("What's on button %d? ", button_number + 1);
 			getl(buttons[button_number++], 10);
 		}
 
@@ -151,7 +152,7 @@ whos_on_first(void)
 			{"YOUR", "UH UH", "YOU ARE", "UH HUH", "YOUR", 0 },
 		};
 
-		size_t row = 0;
+		int row = 0;
 
 		for (int i = 0; i < 28; ++i) {
 			if (!strcmp(button_label, push_options[i][0])) {

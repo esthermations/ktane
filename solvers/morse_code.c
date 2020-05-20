@@ -85,8 +85,8 @@ morse_code(void)
 
 		++attempt;
 
-		size_t answers[NUM_WORDS] = {0};
-		size_t num_answers = 0;
+		int answers[NUM_WORDS] = {0};
+		int num_answers = 0;
 
 		for (int w = 0; w < NUM_WORDS; ++w) {
 			char const *word = words_as_morse[w];

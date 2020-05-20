@@ -3,9 +3,11 @@
 
 #include "../ktane.h"
 
+/* Call this when the defuser needs to hold the button. It will print some
+ * questions for you to answer, then return a string saying when to release. */
 static char const *hold_the_button(void);
 
-char const *
+void
 button(void)
 {
 	printf("[b]lue, [r]ed, [w]hite, [y]ellow.\n");
@@ -23,25 +25,39 @@ button(void)
 	char const colour = colour_str[0];
 	char const   text =   text_str[0];
 
-	if (colour == 'b' && text == 'a')
-		return hold_the_button();
+	if (colour == 'b' && text == 'a') {
+		puts(hold_the_button());
+		return;
+	}
 
-	if (text == 'd' && num_batteries() > 1)
-		return "Press and release.";
+	if (text == 'd' && num_batteries() > 1) {
+		puts("Press and release.");
+		return;
+	}
 
-	if (colour == 'w' && have_lit_car())
-		return hold_the_button();
+	if (colour == 'w' && have_lit_car()) {
+		puts(hold_the_button());
+		return;
+	}
 
-	if (num_batteries() > 2 && have_lit_frk())
-		return "Press and release.";
+	if (num_batteries() > 2 && have_lit_frk()) {
+		puts("Press and release.");
+		return;
+	}
 
-	if (colour == 'y')
-		return hold_the_button();
+	if (colour == 'y') {
+		puts(hold_the_button());
+		return;
+	}
 
-	if (colour == 'r' && text == 'h')
-		return "Press and release.";
+	if (colour == 'r' && text == 'h') {
+		puts("Press and release.");
+		return;
+	}
 
-	return hold_the_button();
+	/* Else */
+	puts(hold_the_button());
+	return;
 }
 
 static char const *

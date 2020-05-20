@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <string.h>
-#include <unistd.h>
 
 #include "../ktane.h"
 
@@ -20,7 +19,7 @@
   Out: "where"
 */
 
-char const *
+void
 password(void)
 {
 	static char const words[][6] = {
@@ -31,28 +30,27 @@ password(void)
 		"three", "water", "where", "which", "world", "would", "write"
 	};
 
-	size_t const num_words = sizeof(words)/sizeof(*words);
-	/* size_t const word_len  = 5; */
+	int const num_words = sizeof(words)/sizeof(*words);
 
 	char columns[5][7] = {{ 0 }};
-	size_t const column_len = 6;
-	size_t num_columns = 0;
+	int const column_len = 6;
+	int num_columns = 0;
 
 	while (num_columns != 5) {
-		printf("Enter column %lu: ", num_columns + 1);
+		printf("Enter column %d: ", num_columns + 1);
 		getl(columns[num_columns], 6);
 		++num_columns;
 
 		/* Stores indexes for words[]. */
-		size_t answers[35] = {0};
-		size_t num_answers = 0;
+		int answers[35] = {0};
+		int num_answers = 0;
 
 		for (int w = 0; w < num_words; ++w) {
 			char const *word = words[w];
 			for (int l = 0; l < num_columns; ++l) {
 				char const  this_letter = word[l];
 				char const *this_column = columns[l];
-				size_t const last_column = num_columns - 1;
+				int const last_column = num_columns - 1;
 
 				if (!occurrences(this_column, column_len, this_letter))
 					break;
@@ -61,10 +59,19 @@ password(void)
 			}
 		}
 
-		if      (num_answers == 0) return "NONE FOUND";
-		else if (num_answers == 1) return words[answers[0]];
+		if (num_answers == 0) {
+			goto no_password_found;
+		}
+		else if (num_answers == 1) {
+			printf("The password is: %s\n", words[answers[0]]);
+			return;
+		}
 		else continue;
 	}
 
-	return "NONE FOUND";
+	/* Using a goto so this can be at the end of the function, handling the case
+	   where num_answersr is somehow not 0 or 1 at the end. */
+no_password_found:
+	puts("NO PASSWORD FOUND. Did you enter something wrong?");
+	return;
 }
