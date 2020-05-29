@@ -11,7 +11,7 @@ complicated_wires(void)
 	printf("[r]ed, [b]lue, [s]tar, [l]ed. [q]uit.\n");
 
 	for (int wire_number = 0; wire_number < 7; ++wire_number) {
-		printf("Wire %d: ", wire_number);
+		printf("Wire %d: ", wire_number + 1); /* +1 to make it human friendly */
 
 		char wire[6] = {0};
 		getl(wire, 5);

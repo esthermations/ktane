@@ -13,14 +13,18 @@ void sigint_handler(int UNUSED);
 /** Returns the number of times c appears in char array arr. */
 int occurrences(char const arr[], int len, char c);
 
-/** My own solution for being able to get a line from stdin, including spaces,
- * without a trailing newline, without allocating on the heap. 
+/** 
+ * Gets a line from stdin and puts it into out_buffer, without the trailing
+ * newline. This blocks until the user enters something and presses enter. 
  *
- * This can't read more than 50 chars (set in util.c), but I don't expect I'll
- * ever need that in this program. 
- * 
- * Usage: getl(some_buffer_youve_allocated, size_of_that_buffer). */
-void getl(char *out, int num);
+ * The buffer you give will be memset to 0, but if the user input is too long,
+ * out_buffer won't end up with a terminating zero. Make sure your buffer is big
+ * enough.
+ *
+ * This uses a static internal buffer in util.c, so it can only get as much text
+ * as will fit in that buffer. (At time of writing, it's 50 chars.)
+ */
+void getl(char *out_buffer, int out_buffer_size);
 
 /* solvers */
 

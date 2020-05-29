@@ -17,14 +17,15 @@ static char getl_buffer[50] = {0};
 static int const getl_buffer_size = 50;
 
 void
-getl(char *out, int num)
+getl(char *out_buffer, int out_buffer_size)
 {
-	fgets(getl_buffer, getl_buffer_size, stdin);
+	memset(out_buffer, 0, out_buffer_size); /* Wipe the user's buffer */
+	fgets(getl_buffer, getl_buffer_size, stdin); /* Grab line from stdin */
+
+	/* Find the newline (if any) and zero it. */
 	char *nl = strrchr(getl_buffer, '\n');
-	if (nl) *nl = 0;
+	if (nl) *nl = '\0';
 
-	for (int i = 0; i < num; ++i)
-		out[i] = getl_buffer[i];
-
+	memcpy(out_buffer, getl_buffer, out_buffer_size);
 	memset(getl_buffer, 0, getl_buffer_size);
 }

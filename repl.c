@@ -16,30 +16,19 @@ enum Solver {
 	_NUM_SOLVERS
 };
 
+static const 
 struct Option {
 	char command[3];
 	void (*handler_function)();
-};
-
-static const 
-struct Option options[] = {
-	[PASSWORD]          = {"pw", &password},
-	[SIMPLE_WIRES]      = {"sw", &simple_wires},
-	[BUTTON]            = {"bt", &button},
-	[WHOS_ON_FIRST]     = {"wo", &whos_on_first},
-	[COMPLICATED_WIRES] = {"cw", &complicated_wires},
-	[WIRE_SEQUENCE]     = {"ws", &wire_sequence},
-	[MORSE_CODE]        = {"mc", &morse_code}
-};
-
-static char const *const readable_solver_name[_NUM_SOLVERS] = {
-	[PASSWORD]          = "Password",
-	[SIMPLE_WIRES]      = "Simple Wires",
-	[BUTTON]            = "Button",
-	[WHOS_ON_FIRST]     = "Who's on First",
-	[COMPLICATED_WIRES] = "Complicated Wires",
-	[WIRE_SEQUENCE]     = "Wire Sequence",
-	[MORSE_CODE]        = "Morse Code"
+	char const *readable_name;
+} options[] = {
+	[PASSWORD]          = {"pw", &password,          "Password"},
+	[SIMPLE_WIRES]      = {"sw", &simple_wires,      "Simple Wires"},
+	[BUTTON]            = {"bt", &button,            "Button"},
+	[WHOS_ON_FIRST]     = {"wo", &whos_on_first,     "Who's on First"},
+	[COMPLICATED_WIRES] = {"cw", &complicated_wires, "Complicated Wires"},
+	[WIRE_SEQUENCE]     = {"ws", &wire_sequence,     "Wire Sequence"},
+	[MORSE_CODE]        = {"mc", &morse_code,        "Morse Code"}
 };
 
 int
@@ -51,14 +40,15 @@ main(void)
 	puts("Available solvers:");
 
 	for (int i = 0; i < _NUM_SOLVERS; ++i) {
-		printf("%s -> %s\n", options[i].command, readable_solver_name[i]);
+		printf("%s -> %s\n", options[i].command, options[i].readable_name);
 	}
 
+	/* Main loop */
 
 	while (true) {
 		char cmd[3] = {0};
 		printf("--> ");
-		getl(cmd, 2);
+		getl(cmd, 2); /* <- this blocks waiting for user input */
 		cmd[2] = 0;
 
 		/* Player quits */
